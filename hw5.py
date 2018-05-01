@@ -1,6 +1,7 @@
                                         # -*- coding: utf-8 -*-
 import csv
 import json
+import pickle
 import string
 from collections import Counter
 
@@ -14,8 +15,8 @@ def main(filename):
    
     for line in lines:
         
-        words = line.split
-
+        words = line.split()
+        line=line.strip
         
         for word in words:
           
@@ -26,22 +27,24 @@ def main(filename):
                 all_words.append(word)
 
     
-    counter =Counter(all_words)
+    count = Counter(all_words)
 
     
-    with open(...) as csv_file:
+    with open("wordcount.csv","w",newline="") as csv_file:
         
         writer = csv.writer(csv_file,delimiter=',')
         
-        writer.writerow(['word':'count'])
+        writer.writerow(['word','count'])
         for i in list(all_words):
-            writer.writerows([i,all_words.count(i)])
+            writer.writerow([i,count [i]])
+
             
     with open("wordcount.json","w")as jsonfile:
-        json.dump(counter,jsonfile)
+        json.dump(count,jsonfile)
 
     with open ("wordcount.pkl","wb") as pklfile:
-        pickle.dump(counter,pklfile)
+        pickle.dump(count,pklfile)
+
 
 
 
